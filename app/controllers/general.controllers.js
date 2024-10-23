@@ -4,132 +4,135 @@ const db = require('../config/db.config.js');
 const General = db.General;
 
 exports.create = (req, res) => {
-    console.log(req.body);
+    console.log(req.body); // Imprimir el cuerpo de la solicitud para depurar
 
     let general = {};
 
     try {
+        // Creando objeto General a partir de los datos de la solicitud
         general.nombre = req.body.nombre;
         general.rol = req.body.rol;
         general.fechanacimiento = req.body.fechanacimiento;
         general.sueldo = req.body.sueldo;
 
+        // Guardar en la base de datos
         General.create(general).then(result => {
             res.status(200).json({
-                message: "Empleado creado exitosamente con id = " + result.id_gen,
+                message: "Registro creado exitosamente con id = " + result.id_gen,
                 general: result,
             });
         });
-    } catch (erro) {
+    } catch (error) {
         res.status(500).json({
-            message: "Error al crear al empleado",
+            message: "Error al crear el registro",
             error: error.message
         });
     }
 }
 
-exports.retrieveAllGeneral = (req,res) =>{
+exports.retrieveAll = (req, res) => {
+    // Recuperar todos los registros
     General.findAll()
-    .then(general => {
-        res.status(200).json({
-            message: "Todos los empleados han sido obtenidos correctamente",
-            general: general
+        .then(records => {
+            res.status(200).json({
+                message: "Registros recuperados exitosamente",
+                records: records
+            });
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({
+                message: "Error al recuperar los registros",
+                error: error
+            });
         });
-    })
-    .catch(error => {
-        console.log(error);
-        res.status(500).json({
-            message: "Error al obtener todos los empleados",
-            error: error.message
-        });
-    });
 }
 
-exports.getGeneralById = (req, res) => {
-    let generalId = req.params.id;
+exports.getById = (req, res) => {
+    let id = req.params.id;
 
-    General.findByPk(generalId)
-    .then(general => {
-        if (!general){
-            res.status(404).json({
-                message: "No se encontró un empleado con id = " + generalId,
+    General.findByPk(id)
+        .then(record => {
+            if (!record) {
+                res.status(404).json({
+                    message: "Registro no encontrado con id = " + id,
+                });
+            } else {
+                res.status(200).json({
+                    message: "Registro recuperado exitosamente con id = " + id,
+                    general: record
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({
+                message: "Error al recuperar el registro con id = " + id,
+                error: error
             });
-        } else {
-            res.status(200).json({
-                message: "Empleado obtenido correctamente con id = " + generalId,
-                general: general,
-            });
-        }
-    })
-    .catch(error => {
-        console.log(error);
-        res.status(500).json({
-            message: "Error al obtener el empleado con id = " + generalId,
-            error: error
         });
-    });
 }
 
 exports.updateById = async (req, res) => {
     try {
-        let generalId = req.params.id;
-        let general = await General.findByPk(generalId);
+        let id = req.params.id;
+        let record = await General.findByPk(id);
 
-        if(!general){
+        if (!record) {
             res.status(404).json({
-                message: "No se encontró un empleado con id = " + generalId,
+                message: "Registro no encontrado para actualizar con id = " + id,
             });
         } else {
             let updatedObject = {
-                nombre: req.body.nomnbre,
+                nombre: req.body.nombre,
                 rol: req.body.rol,
                 fechanacimiento: req.body.fechanacimiento,
                 sueldo: req.body.sueldo
             }
 
-            let result = await General.update(updateIbject, {returning: true, where: {id_gen: generalId}});
+            let result = await General.update(updatedObject, { returning: true, where: { id_gen: id } });
 
-            if(!result){
+            if (!result) {
                 res.status(500).json({
-                    message: "Error al actualizar el Empleado con id = " + req.params.id,
-                    error: "No se puede actualizar",
+                    message: "Error al actualizar el registro con id = " + id,
+                    error: "No se pudo actualizar",
                 });
             }
 
             res.status(200).json({
-                message: "Empleado actualizado existosamente con id = " + generalId,
+                message: "Registro actualizado exitosamente con id = " + id,
                 general: updatedObject,
             });
         }
     } catch (error) {
         res.status(500).json({
-            message: "Error al actualizar el Empleado con id = " + req.params.id,
-            general: error.message
+            message: "Error al actualizar el registro con id = " + req.params.id,
+            error: error.message
         });
     }
 }
 
 exports.deleteById = async (req, res) => {
     try {
-        let generalId = req.params.id;
-        let general = await General.findByPk(generalId);
+        let id = req.params.id;
+        let record = await General.findByPk(id);
 
-        if(!general){
+        if (!record) {
             res.status(404).json({
-                message: "No se encontró un empleado con id = " + generalId,
+                message: "No existe un registro con id = " + id,
                 error: "404",
             });
         } else {
-          await general.destroy();
-          res.status(200).json({
-            message: "Empleado eliminado con id = " + generalId,
-            general: general,
-          });
+            await record.destroy();
+            res.status(200).json({
+                message: "Registro eliminado exitosamente con id = " + id,
+                general: record,
+            });
         }
     } catch (error) {
         res.status(500).json({
-            message: "Error al eliminar el Empleado con id = " + req.params.id,
+            message: "Error al eliminar el registro con id = " + req.params.id,
             error: error.message,
-        }); 
+        });
     }
 }
