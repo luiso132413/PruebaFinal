@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.INTEGER
 		},
 		fechanacimiento: {
-			type: Sequelize.DATE
+			type: Sequelize.STRING
 		},
 		sueldo:{
 			type: Sequelize.DOUBLE
