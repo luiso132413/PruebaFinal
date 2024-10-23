@@ -2,12 +2,13 @@
 let express = require('express');
 let router = express.Router();
  
-const general = require('../controllers/general.controllers.js');
+const cliente = require('../controllers/cliente.controllers.js');
 
-router.post('/api/generl/create', general.create);
-router.get('/api/general/all', general.retrieveAll);
-router.get('/api/general/onebyid/:id', general.getById);
-router.put('/api/general/update/:id', general.updateById);
-router.delete('/api/general/delete/:id', general.deleteById);
+// Rutas de los clientes
+router.post('/api/cliente/create', cliente.create);
+router.get('/api/cliente/all', cliente.retrieveAll);
+router.get('/api/cliente/onebyid/:id', cliente.getById);
+router.put('/api/cliente/update/:id', cliente.updateById);
+router.delete('/api/cliente/delete/:id', cliente.deleteById);
 
 module.exports = router;
