@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.STRING
 		},
 		fechanacimiento: {
-			type: Sequelize.STRING
+			type: Sequelize.DATE
 		},
 		edad: {
 			type: Sequelize.INTEGER
