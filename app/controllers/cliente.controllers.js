@@ -33,7 +33,7 @@ exports.create = async (req, res) => {
 
 exports.retrieveAll = async (req, res) => {
     try {
-        // Recuperar todos los registros
+        // Recuperar todos los clientes (excluye eliminados por defecto)
         const clientes = await Cliente.findAll();
         res.status(200).json({
             message: "Clientes recuperados exitosamente",
@@ -115,6 +115,7 @@ exports.deleteById = async (req, res) => {
             });
         }
 
+        // Este método solo marcará el cliente como "eliminado" debido a paranoid: true
         await cliente.destroy();
         res.status(200).json({
             message: "Cliente eliminado exitosamente con id = " + id,
