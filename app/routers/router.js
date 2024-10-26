@@ -13,9 +13,10 @@ router.put('/api/cliente/update/:id', cliente.updateById);
 router.delete('/api/cliente/delete/:id', cliente.deleteById);
 
 // Rutas de Productos
-router.get('/api/producto/create', producto.create);
+router.post('/api/producto/create', producto.create);
 router.get('/api/producto/all', producto.retrieveAll);
 router.get('/api/producto/onebyid/:id', producto.getById);
 router.put('/api/producto/update/:id', producto.updateById);
 router.delete('/api/producto/delete/:id', producto.deleteById);
+
 module.exports = router;
