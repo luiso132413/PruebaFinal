@@ -6,7 +6,6 @@ exports.create = async (req, res) => {
         // Crear objeto Producto a partir de los datos de la solicitud
         const producto = {
             descripcion: req.body.descripcion,
-            categoria: req.body.categoria,
             precio: req.body.precio
         };
 
@@ -75,7 +74,6 @@ exports.updateById = async (req, res) => {
 
         const updatedObject = {
             descripcion: req.body.descripcion,
-            categoria: req.body.categoria,
             precio: req.body.precio
         };
 
