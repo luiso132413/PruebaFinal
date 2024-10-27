@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.STRING
 		},
 		precio: {
-			type: Sequelize.FLOAT
+			type: Sequelize.DOUBLE
 		}
 	}, {
 		paranoid: true,    // Habilita soft delete
