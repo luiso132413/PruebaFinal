@@ -6,19 +6,20 @@ exports.create = async (req, res) => {
     try {
         // Crear objeto Factura a partir de los datos de la solicitud
         const factura = {
+            cod_fact: req.body.cod_fact,
             nombre: req.body.nombre,
             noDocumento: req.body.noDocumento,
             telefono: req.body.telefono,
             fecha: req.body.fecha,
-            impuesto: req.body.impuesto,
-            servicio: req.body.servicio,
+            impuesto: req.body.impuesto || 0.0,
+            servicio: req.body.servicio || 0.0,
             cod_pro: req.body.cod_pro,
             des_pro: req.body.des_pro,
             cantidad_pro: req.body.cantidad_pro,
             precio_pro: req.body.precio_pro,
             total: req.body.total,
             totalGlobal: req.body.totalGlobal,
-            tipoDepago: req.body.tipoDepago,
+            tipoDepago: req.body.tipoDepago
         };
 
         // Guardar en la base de datos
@@ -87,6 +88,7 @@ exports.updateById = async (req, res) => {
         }
 
         const updatedObject = {
+            cod_fact: req.body.cod_fact,
             nombre: req.body.nombre,
             noDocumento: req.body.noDocumento,
             telefono: req.body.telefono,
@@ -99,7 +101,7 @@ exports.updateById = async (req, res) => {
             precio_pro: req.body.precio_pro,
             total: req.body.total,
             totalGlobal: req.body.totalGlobal,
-            tipoDepago: req.body.tipoDepago,
+            tipoDepago: req.body.tipoDepago
         };
 
         await Factura.update(updatedObject, { where: { id_fact: id } });

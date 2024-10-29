@@ -5,6 +5,10 @@ module.exports = (sequelize, Sequelize) => {
 			primaryKey: true,
 			autoIncrement: true
 		},
+		cod_fact:{
+			type: Sequelize.STRING,
+            allowNull: false
+		},
 		nombre: {
 			type: Sequelize.STRING,
 			allowNull: false
