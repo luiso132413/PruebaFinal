@@ -33,26 +33,6 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.DOUBLE,
 			defaultValue: 0.0
 		},
-		cod_pro: {
-			type: Sequelize.INTEGER,
-			allowNull: false
-		},
-		des_pro: {
-			type: Sequelize.STRING,
-			allowNull: false
-		},
-        cantidad_pro: {
-			type: Sequelize.INTEGER,
-			allowNull: false
-		},
-        precio_pro: {
-			type: Sequelize.DOUBLE,
-			allowNull: false
-		},
-        total: {
-			type: Sequelize.DOUBLE,
-			allowNull: false
-		},
         totalGlobal: {
 			type: Sequelize.DOUBLE,
 			allowNull: false
