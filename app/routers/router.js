@@ -5,6 +5,7 @@ let router = express.Router();
 const cliente = require('../controllers/cliente.controllers.js');
 const producto = require('../controllers/producto.controllers.js');
 const factura = require('../controllers/factura.controllers.js');
+const ptarjeta = require('../controllers/ptarjeta.controllers.js');
 
 // Rutas de los clientes
 router.post('/api/cliente/create', cliente.create);
@@ -26,5 +27,12 @@ router.get('/api/factura/all', factura.retrieveAll);
 router.get('/api/factura/onebyid/:id', factura.getById);
 router.put('/api/factura/update/:id', factura.updateById);
 router.delete('/api/factura/delete/:id', factura.deleteById);
+
+//ruta de ptarjeta
+router.post('/api/ptarjeta/create', ptarjeta.create);
+router.get('/api/ptarjeta/all', ptarjeta.retrieveAll);
+router.get('/api/ptarjeta/onebyid/:id', ptarjeta.getById);
+router.put('/api/ptarjeta/update/:id', ptarjeta.updateById);
+router.delete('/api/ptarjeta/delete/:id', ptarjeta.deleteById);
 
 module.exports = router;
