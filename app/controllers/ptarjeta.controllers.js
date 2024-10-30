@@ -6,6 +6,7 @@ exports.create = async (req, res) => {
         // Crear objeto Ptarjeta a partir de los datos de la solicitud
         const tarjeta = {
             ntarjeta: req.body.ntarjeta,
+            mes: req.body.mes,
             anio: req.body.anio,
             cod_seguridad: req.body.cod_seguridad,
             nombret: req.body.nombret,
@@ -28,7 +29,6 @@ exports.create = async (req, res) => {
 
 exports.retrieveAll = async (req, res) => {
     try {
-        // Recuperar todos los registros de pagos con tarjeta
         const tarjetas = await Ptarjeta.findAll();
         res.status(200).json({
             message: "Pagos con tarjeta recuperados exitosamente",
@@ -77,6 +77,7 @@ exports.updateById = async (req, res) => {
 
         const updatedObject = {
             ntarjeta: req.body.ntarjeta,
+            mes: req.body.mes,
             anio: req.body.anio,
             cod_seguridad: req.body.cod_seguridad,
             nombret: req.body.nombret,

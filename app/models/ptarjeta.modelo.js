@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.STRING,
             allowNull: false
 		},
+        mes: {
+            type: Sequelize.INTEGER
+        },
 		anio: {
 			type: Sequelize.INTEGER,
 			allowNull: false
