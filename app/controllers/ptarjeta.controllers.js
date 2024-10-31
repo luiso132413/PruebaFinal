@@ -3,7 +3,7 @@ const Ptarjeta = db.Ptarjeta;
 
 exports.create = async (req, res) => {
     try {
-        // Crear objeto Ptarjeta a partir de los datos de la solicitud
+
         const tarjeta = {
             ntarjeta: req.body.ntarjeta,
             mes: req.body.mes,
@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
             correo: req.body.correo
         };
 
-        // Guardar en la base de datos
+      
         const result = await Ptarjeta.create(tarjeta);
         res.status(201).json({
             message: "Pago con tarjeta creado exitosamente con id = " + result.id_pago,

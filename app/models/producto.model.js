@@ -12,8 +12,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.DOUBLE
 		}
 	}, {
-		paranoid: true,    // Habilita soft delete
-		timestamps: true   // Habilita createdAt y updatedAt
+		
 	});
 	
 	return Producto;

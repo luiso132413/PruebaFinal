@@ -3,7 +3,7 @@ const Factura = db.Factura;
 
 exports.create = async (req, res) => {
     try {
-        // Crear objeto Factura a partir de los datos de la solicitud
+
         const factura = {
             cod_fact: req.body.cod_fact,
             nombre: req.body.nombre,
@@ -16,7 +16,7 @@ exports.create = async (req, res) => {
             tipoDepago: req.body.tipoDepago
         };
 
-        // Guardar en la base de datos
+
         const result = await Factura.create(factura);
         res.status(201).json({
             message: "Factura creada exitosamente con id = " + result.id_fact,

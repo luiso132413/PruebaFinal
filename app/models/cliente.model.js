@@ -30,8 +30,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.INTEGER
 		}
 	}, {
-		paranoid: true,    // Habilita soft delete
-		timestamps: true   // Habilita createdAt y updatedAt
+	
 	});
 	
 	return Cliente;

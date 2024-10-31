@@ -3,13 +3,13 @@ const Producto = db.Producto;
 
 exports.create = async (req, res) => {
     try {
-        // Crear objeto Producto a partir de los datos de la solicitud
+   
         const producto = {
             descripcion: req.body.descripcion,
             precio: req.body.precio
         };
 
-        // Guardar en la base de datos
+
         const result = await Producto.create(producto);
         res.status(201).json({
             message: "Producto creado exitosamente con código = " + result.codigo,
@@ -25,7 +25,7 @@ exports.create = async (req, res) => {
 
 exports.retrieveAll = async (req, res) => {
     try {
-        // Recuperar todos los productos (excluye eliminados por defecto)
+
         const productos = await Producto.findAll();
         res.status(200).json({
             message: "Productos recuperados exitosamente",
@@ -101,7 +101,7 @@ exports.deleteById = async (req, res) => {
             });
         }
 
-        // Este método solo marcará el producto como "eliminado" debido a paranoid: true
+
         await producto.destroy();
         res.status(200).json({
             message: "Producto eliminado exitosamente con código = " + id,

@@ -5,7 +5,7 @@ const Cliente = db.Cliente;
 
 exports.create = async (req, res) => {
     try {
-        // Crear objeto Cliente a partir de los datos de la solicitud
+
         const cliente = {
             nombre_cli: req.body.nombre_cli,
             apellido_cli: req.body.apellido_cli,
@@ -17,7 +17,7 @@ exports.create = async (req, res) => {
             telefono: req.body.telefono
         };
 
-        // Guardar en la base de datos
+
         const result = await Cliente.create(cliente);
         res.status(201).json({
             message: "Cliente creado exitosamente con id = " + result.id_cli,
@@ -33,7 +33,7 @@ exports.create = async (req, res) => {
 
 exports.retrieveAll = async (req, res) => {
     try {
-        // Recuperar todos los clientes (excluye eliminados por defecto)
+
         const clientes = await Cliente.findAll();
         res.status(200).json({
             message: "Clientes recuperados exitosamente",
@@ -115,7 +115,7 @@ exports.deleteById = async (req, res) => {
             });
         }
 
-        // Este método solo marcará el cliente como "eliminado" debido a paranoid: true
+
         await cliente.destroy();
         res.status(200).json({
             message: "Cliente eliminado exitosamente con id = " + id,
